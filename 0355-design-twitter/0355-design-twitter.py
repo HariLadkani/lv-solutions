@@ -57,7 +57,6 @@ class Twitter:
             tweets.append((time, tweetId))
             if index > -1:
                 heapq.heappush(self.max_heap, (self.user_to_tweet[user][index], index-1, user))
-        print(tweets)
         res = [tweetId for _, tweetId in sorted(tweets, reverse=True, key=lambda x: -x[0])]
         return res
 
