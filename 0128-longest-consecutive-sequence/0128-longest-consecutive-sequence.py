@@ -8,12 +8,11 @@ class Solution:
         member = set(nums)
 
         res = 0
-        for num in nums:
+        for num in member:
             count = 0
-            if num in member and (num - 1) not in member:
+            if (num - 1) not in member:
                 while num in member:
                     count += 1
-                    member.remove(num)
                     num = num + 1
                     res = max(res, count)
                     
