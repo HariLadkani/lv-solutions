@@ -57,23 +57,32 @@ class Solution:
             cache[(prev_index, index)] = count
             return cache[(prev_index, index)]
             
-
+        [2, 5, 3, 7, 101, 18]
+                  2   1    1
             
         return increasing_sequence(-1, 0)
 
+        [10, 9, 2,5,3,7,101,18]
+         l                  r
+         
         '''
-        dp = [0] * len(nums)
+        from bisect import bisect_left
+        dp = [nums[0]]
+        LIS = 1
+        for i in range(1, len(nums)):
+            if dp[-1] < nums[i]:
+                dp.append(nums[i])
+                LIS += 1
+                continue
 
-        for r in range(len(nums)-1, -1, -1):
-            count = 1
-            for nested_index in range(r+1, len(nums)):
-                if nums[nested_index] > nums[r]:
-                    count = max(count, 1 + dp[nested_index])
+            idx = bisect_left(dp, nums[i])
+            dp[idx] = nums[i]
+
             
-            dp[r] = count
 
-        return max(dp)
-
+        return LIS
+        
+        
      
         
 
