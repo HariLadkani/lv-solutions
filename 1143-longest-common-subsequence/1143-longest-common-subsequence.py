@@ -18,14 +18,15 @@ class Solution:
                 return max(skip text1 or skip text2 index)
 
             cache[(index1, index2)] = longest 
-        '''
-        cache  = {}
+
+                cache  = {}
         def dfs(index1, index2):
             if index1 == len(text1) or index2 == len(text2):
                 return 0
 
             if (index1, index2) in cache:
                 return cache[(index1, index2)]
+                
             length = 0
             if text1[index1] == text2[index2]:
                 length += 1 + dfs(index1+1, index2+1)
@@ -38,3 +39,27 @@ class Solution:
             return length
 
         return dfs(0, 0)
+
+        a b c d e -
+    a   3 2 2 1 1 
+    c   2 2 2 1 1
+    e   1 1 1 1 1
+    -    
+
+        '''
+        dp = [[0 for _ in range(len(text1)+1)] for _ in range(len(text2)+1)]
+
+        print(dp)
+
+        for index2 in range(len(text2)-1, -1, -1): #right to left
+            for index1 in range(len(text1)-1, -1, -1): #right to left
+                if text1[index1] == text2[index2]:
+                    dp[index2][index1] = 1 + dp[index2+1][index1+1]
+                
+                else:
+                    dp[index2][index1] = max(dp[index2][index1+1], dp[index2+1][index1])
+
+        return dp[0][0]
+
+
+
