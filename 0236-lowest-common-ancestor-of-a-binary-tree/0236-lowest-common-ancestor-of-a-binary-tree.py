@@ -41,10 +41,13 @@ class Solution:
         '''
         lca = None
         def dfs(currNode, p, q):
+            nonlocal lca
+            if lca:
+                return set()
             if currNode == None:
                 return set()
 
-            nonlocal lca
+            
             left_descendants = dfs(currNode.left, p, q)
             right_descendants = dfs(currNode.right, p, q)
             descendants = left_descendants.union(right_descendants)
