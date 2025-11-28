@@ -36,27 +36,17 @@ class Solution:
             return add_num
         '''
 
-        res = num #2
-        while res >= 10: #false
-            print("res % 10", res%10)
-            initial_num = res #1
-            add_num = 0 #2
-            while (initial_num >= 10): #false
-                print("initial_num % 10", initial_num%10)
-                digit = initial_num // 10 #1
-                print("digit", digit)
+        res = num 
+        while res >= 10: 
+            initial_num = res 
+            add_num = 0 
+            while (initial_num >= 10): 
+                digit = initial_num // 10
                 add_num += digit
-                print("add_num", add_num)
                 initial_num = initial_num % 10 
-                print("initial_num", initial_num)
-                print("end of inner loop")
-            
+    
             add_num += initial_num  
             res = add_num
-
-            print("add_num", add_num)
-            print("res", res)
-            print("end of outer looop")
         return res
 
         
