@@ -16,22 +16,24 @@ goal:
     
 
 */
-WITH cte AS (
+WITH cte AS 
+(
     SELECT 
         customer_id,
         order_date,
         customer_pref_delivery_date,
-        MIN(order_date) OVER (PARTITION BY customer_id ORDER BY order_date) AS first_order
+        ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date) AS ranking
     FROM Delivery
 )
 
 SELECT 
     ROUND(
-        SUM(CASE
-                WHEN order_date = first_order AND order_date = customer_pref_delivery_date THEN 1
+        SUM(
+            CASE 
+                WHEN order_date  = customer_pref_delivery_date THEN 1
                 ELSE 0
             END
-        ) * 100 / COUNT(DISTINCT customer_id),
-        2
-    ) AS immediate_percentage
-FROM cte;
+        ) * 100 / COUNT(*),
+    2) AS immediate_percentage
+FROM cte
+where ranking = 1;
