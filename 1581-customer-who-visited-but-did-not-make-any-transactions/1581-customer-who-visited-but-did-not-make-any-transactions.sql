@@ -1,13 +1,18 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
+/*
+Visits
+visit_id(pk) | customer_id
 
-#customer_id not found in transactions and number of such visits for each customer_id
+Transactions
+transaction_id(pk) | visit_id(FK) | amount
 
-#9, 23, 54
+return customer_id in visits table who visit id not found in transactions and count of visits
+*/
 SELECT
-    customer_id,
+    v.customer_id,
     COUNT(*) AS count_no_trans
 FROM Visits AS v
 LEFT JOIN Transactions AS t
-ON v.visit_id = t.visit_id
-WHERE transaction_id IS NULL
-GROUP BY customer_id;
+ON t.visit_id = v.visit_id
+WHERE t.transaction_id IS NULL
+GROUP BY v.customer_id
