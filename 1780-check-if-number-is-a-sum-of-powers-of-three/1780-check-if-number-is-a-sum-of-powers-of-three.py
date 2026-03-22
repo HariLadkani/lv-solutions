@@ -44,22 +44,21 @@ class Solution:
         '''
         res = False
 
-        arr = [3**i for i in range(int(math.log(n, 3))+1)]
+     
 
         def dfs(index, curr_sum):
             nonlocal res
-            if index == len(arr):
-                if curr_sum == n:
-                    res = True
-
+           
+            if curr_sum == n:
+                res = True
                 return
 
-            if curr_sum > n or res==True:
+            if curr_sum > n or res==True or 3**index > n:
                 return False
             #skip
             dfs(index+1, curr_sum)
             #take it
-            dfs(index+1, curr_sum + arr[index])
+            dfs(index+1, curr_sum + 3**index)
         dfs(0, 0)
         return res
         
