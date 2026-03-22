@@ -44,7 +44,7 @@ class Solution:
         '''
         res = False
 
-        arr = [3**i for i in range(int(n**(1/3))+1)]
+        arr = [3**i for i in range(int(math.log(n, 3))+1)]
 
         def dfs(index, curr_sum):
             nonlocal res
