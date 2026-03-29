@@ -1,14 +1,15 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 /*
-id(PK) | movie | description | rating
-1        avengers  sci-fi      9.85
-
-id%2!=0 AND description != "boring" 
+description != 'boring'
+id must be odd
 ORDER BY rating DESC
 
 */
-SELECT
-*
+SELECT 
+    id,
+    movie,
+    description, 
+    rating
 FROM Cinema
-WHERE id%2 != 0 AND description != 'boring'
-ORDER BY rating DESC; 
+WHERE id % 2 != 0 AND description != 'boring'
+ORDER BY rating DESC
