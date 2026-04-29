@@ -9,6 +9,13 @@ class Solution:
         4  3    8   4 
         13 8    9   13 
         11 15   15  15
+
+
+        [
+            [10,3,5], 
+            [1,6,11],
+            [7,9,2]
+        ]
         '''
 
         def count_sum_in_rows(row_start, col_start):
@@ -22,6 +29,9 @@ class Solution:
                 for col in range(col_start, col_start+3):
                     summation += grid[row][col]
                     value_set.add(grid[row][col])
+
+                    if grid[row][col] > 9 or grid[row][col] < 1:
+                        return None
 
                 sum_set.add(summation)
                 
@@ -38,6 +48,8 @@ class Solution:
                 for row in range(row_start, row_start+3):
                     summation += grid[row][col]
                     value_set.add(grid[row][col])
+                    if grid[row][col] > 9 or grid[row][col] < 1:
+                        return None
                 sum_set.add(summation)
                 
 
@@ -68,6 +80,12 @@ class Solution:
 
                 if sum_rows and sum_cols and sum_diag and (sum_rows == sum_cols == sum_diag):
                     result += 1
+
+                print("sum rows", sum_rows)
+                print("sum cols", sum_cols)
+                print("sum diag", sum_diag)
+                print("row, col", row, col)
+                print("###########")
 
         return result
 
