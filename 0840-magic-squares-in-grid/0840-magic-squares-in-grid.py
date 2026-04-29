@@ -81,11 +81,7 @@ class Solution:
                 if sum_rows and sum_cols and sum_diag and (sum_rows == sum_cols == sum_diag):
                     result += 1
 
-                print("sum rows", sum_rows)
-                print("sum cols", sum_cols)
-                print("sum diag", sum_diag)
-                print("row, col", row, col)
-                print("###########")
+              
 
         return result
 
