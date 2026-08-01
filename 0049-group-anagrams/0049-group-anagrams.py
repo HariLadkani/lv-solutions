@@ -22,11 +22,11 @@ class Solution:
             freq_map = [0] * 26
             for char in string:
                 freq_map[ord(char) - ord("a")] += 1
-            print("freq_map", freq_map)
+
             key = tuple(freq_map)
             anagram_map[key].append(string)
 
-        print(anagram_map)
+
         for value in anagram_map.values():
             res.append(value)
 
