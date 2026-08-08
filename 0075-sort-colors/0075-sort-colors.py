@@ -68,10 +68,7 @@ class Solution:
 
             while l < len(nums) - 1 and nums[l] == 0 and l < i:
                 l += 1
-            print("nums", nums)
-            print("i", i)
-            print("left", l)
-            print("right", r)
+      
 
             
             
@@ -83,8 +80,6 @@ class Solution:
 
             i += 1
 
-            print("nums", nums)
-            print("end++++++")
-
+         
             
         
