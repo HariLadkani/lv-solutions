@@ -43,7 +43,7 @@ class Solution:
 
         for index, char in enumerate(s):
             ends[char] = index
-        print("ends", ends)
+   
         count = 0
         res = []
         end = 0
@@ -51,8 +51,7 @@ class Solution:
             count += 1
             
             end = max(ends[char], end)
-            print("count", count)
-            print("end", end)
+          
             if end == index:
                 res.append(count)
                 count = 0
