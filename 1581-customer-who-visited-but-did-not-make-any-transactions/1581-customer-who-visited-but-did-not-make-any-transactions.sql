@@ -1,18 +1,14 @@
--- Write your PostgreSQL query statement below
 /*
-Visits
-visit_id(pk) | customer_id
+goa:
+    customer_id in Visits that do not have visit_id in Transaction
+    group on customer_id to compute counts
 
-Transactions
-transaction_id(pk) | visit_id(FK) | amount
-
-return customer_id in visits table who visit id not found in transactions and count of visits
 */
 SELECT
     v.customer_id,
     COUNT(*) AS count_no_trans
 FROM Visits AS v
 LEFT JOIN Transactions AS t
-ON t.visit_id = v.visit_id
-WHERE t.transaction_id IS NULL
-GROUP BY v.customer_id
+ON v.visit_id = t.visit_id
+WHERE t.visit_id IS NULL
+GROUP BY v.customer_id;
