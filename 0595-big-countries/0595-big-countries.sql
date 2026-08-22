@@ -1,11 +1,14 @@
-# Write your MySQL query statement below
-#BIG => area>=3000000 OR population >=  25000000
+/*
+OUTPUT: name, population, area where 
+    area > 3000000
+        OR
+    population > 25000000
+*/
 SELECT
-    name,
+    name, 
     population,
     area
-FROM 
-    World
+FROM World
 WHERE 
-    area >= 3000000 
-    OR population >= 25000000;
+    area >= 3000000 OR
+    population >= 25000000;
