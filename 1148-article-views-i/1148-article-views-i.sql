@@ -1,9 +1,10 @@
-# Write your MySQL query statement below
-#duplicate rows possible  because no primary key
-
-#find author_id where viewer_id =  authord_id
-#order by id ASC
-SELECT DISTINCT author_id AS id
-FROM Views
-WHERE viewer_id = author_id
-ORDER BY author_id ASC;
+/*
+goal: return author_id as id
+where author_id = viewer_id
+sort by author_id ASC
+*/
+SELECT 
+    DISTINCT author_id as id
+FROM Views 
+WHERE author_id = viewer_id
+ORDER BY author_id;
