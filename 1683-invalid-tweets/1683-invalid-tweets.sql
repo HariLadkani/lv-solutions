@@ -1,6 +1,11 @@
-# Write your MySQL query statement below
-#content: alphanumerica, '!', ' '
-#find ids where lenght of content > 15
+/*
+content = alphanumeric | '!' | ' '
+
+GOAL:
+    tweet_id of invalid tweets
+    invalid means content length > 15
+
+*/
 SELECT tweet_id
 FROM Tweets
-WHERE LENGTH(content) > 15;
+WHERE CHAR_LENGTH(content) > 15;
