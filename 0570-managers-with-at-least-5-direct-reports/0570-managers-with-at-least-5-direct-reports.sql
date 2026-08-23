@@ -1,10 +1,11 @@
--- Write your PostgreSQL query statement below
-SELECT
-    MAX(e.name) AS name
-FROM Employee AS e
-LEFT JOIN Employee as f
-ON 
-    e.id = f.managerID
+/*
+name of managers with alteast 5 direct reports
+*/
 
-GROUP BY e.id
-HAVING COUNT(e.id) >= 5
+SELECT 
+    e1.name
+FROM Employee AS e1
+LEFT JOIN Employee AS e2
+ON e1.id=e2.managerId
+GROUP BY e1.id
+HAVING COUNT(*) >= 5;
