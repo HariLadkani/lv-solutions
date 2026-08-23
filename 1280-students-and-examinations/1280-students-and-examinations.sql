@@ -1,44 +1,49 @@
-# Write your MySQL query statement below
-
 /*
-each student_id takes all subjects in subject table
+each student takes every course from subjects table
 
-Examination:
-    same student can take multiple exams of same subject
-
-GOAL:
+goal:
     number of times each student attended each exam
-    order by student_id, subject_name
 
-OUTPUT:
-    student_id, student_name, subject_name, attended_exams
+ORDER BY student_id, subject_name
 
-1. count duplicates of student_id, subject_name 
-2. 
-2. order by student_id, subject_name
+first group by on exam table on student_id and subject_name and count
 
-1. group by student_id, subject_name and compute count
-2. left join with students table and fetch student_name
+cross join students table and subjects
+
+then left join cross joined table with grouped exam table to fetch counts.
+
+Null be shown as 0
+
+| student_id | student_name | subject_name | attended_exams |
+| ---------- | ------------ | ------------ | -------------- |
+| 13         | John         | Programming  | 1              |
+| 13         | John         | Physics      | 1              |
+| 13         | John         | Math         | 1              |
+
+
+| student_id | student_name | subject_name | attended_exams |
+
+
 
 */
 SELECT 
-    s.student_id AS student_id,
-    s.student_name AS student_name,
-    subject.subject_name AS subject_name,
-    CASE 
-    WHEN agg.attended_exams THEN agg.attended_exams 
-    ELSE 0
-    END AS attended_exams
+    s.student_id,
+    s.student_name,
+    sub.subject_name,
+    COALESCE(t.attended_exams, 0) AS attended_exams
 FROM Students AS s
-CROSS JOIN Subjects AS subject
+CROSS JOIN Subjects AS sub
 LEFT JOIN 
-(
-    SELECT 
-        student_id AS agg_id,
-        subject_name AS agg_name,
+    (SELECT 
+        e.student_id,
+        e.subject_name,
         COUNT(*) AS attended_exams
-    FROM Examinations
-    GROUP BY student_id, subject_name
-) AS agg
-ON s.student_id = agg.agg_id AND subject.subject_name = agg.agg_name
-ORDER BY student_id, subject_name;
+    FROM Examinations AS e
+    GROUP BY e.student_id, e.subject_name) AS t
+ON 
+    t.student_id=s.student_id AND 
+    t.subject_name=sub.subject_name
+
+ORDER BY s.student_id ASC, sub.subject_name ASC
+
+
