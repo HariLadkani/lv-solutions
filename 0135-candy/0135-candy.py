@@ -78,11 +78,8 @@ class Solution:
             else:
                 candies[index] = 1
 
-    
- 
    
             total_candies += candies[index]
-
 
         return total_candies
         
