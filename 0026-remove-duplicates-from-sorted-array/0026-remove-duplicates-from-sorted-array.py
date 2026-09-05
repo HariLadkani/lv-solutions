@@ -1,21 +1,27 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         '''
-        [1, 1, 1, 2, 3, 4]
-            l     r
+        [1, 2, 3, 4, 3, 4]
+                        r
+                     w
 
+            
         
 
 
         '''
-        left = 0
-        right = 0
+        write_pointer = 0
+        prev_write_value = float('-inf')
 
-        while right < len(nums):
-            nums[left] = nums[right]
-            while right < len(nums) and nums[right] == nums[left]:
-                right += 1
+        for r in range(len(nums)):
+            if nums[r] > prev_write_value:
+                nums[write_pointer] = nums[r]
+                write_pointer += 1
+                prev_write_value = nums[r]
 
-            left += 1
-        
-        return left
+        return write_pointer
+
+
+
+
+
