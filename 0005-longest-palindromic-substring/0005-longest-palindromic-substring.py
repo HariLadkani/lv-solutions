@@ -63,7 +63,6 @@ class Solution:
         longest_substring = ""
 
         for i in range(len(s)):
-            print("i", i)
             left = i 
             right = i
 
