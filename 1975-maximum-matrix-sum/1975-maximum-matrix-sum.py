@@ -23,7 +23,6 @@ class Solution:
 
                 min_abs_value = min(min_abs_value, abs(matrix[row][col]))
 
-        print("min_abs_value", min_abs_value)
         if neg_count % 2 != 0: #odd
             abs_sum -= 2*min_abs_value
 
