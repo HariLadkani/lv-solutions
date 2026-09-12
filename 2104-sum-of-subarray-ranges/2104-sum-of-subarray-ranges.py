@@ -30,31 +30,22 @@ class Solution:
         
         decreasing stack for max
         increasing stack for min
-        
         '''
+
+        res = 0
+        
+
+        for i in range(len(nums)):
+            maximum = nums[i]
+            minimum = nums[i]
+            for j in range(i+1, len(nums)):
+                maximum = max(maximum, nums[j])
+                minimum = min(minimum, nums[j])
+                res += maximum - minimum
+
+        return res
+                
+
     
         
-        def compute_sum(isMin):
-            stack = []
-            res = 0
-
-            for index, num in enumerate(nums):
-
-                while stack and (num < nums[stack[-1]] if isMin else num > nums[stack[-1]]):
-                    i = stack.pop()
-                    right = index - i
-                    left = i - stack[-1] if stack else i + 1
-                    res += left * right * nums[i]
-                
-                stack.append(index)
-
-            for i in range(len(stack)):
-                left = (stack[i] - (stack[i-1])) if i > 0 else stack[i] + 1
-                right = len(nums) - stack[i]
-                res += left * right * nums[stack[i]]
-
-            return res
-
-        return compute_sum(False) - compute_sum(True)  
-
         
