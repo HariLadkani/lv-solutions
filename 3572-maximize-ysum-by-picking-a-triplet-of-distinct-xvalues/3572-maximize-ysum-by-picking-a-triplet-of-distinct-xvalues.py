@@ -19,21 +19,23 @@ class Solution:
 
          [1,2,1,2] [4,5,6,7]
 
+
+         o(n)
+
         '''
         hash_map = defaultdict(int)
      
-        for index, num in enumerate(x):
+        for index, num in enumerate(x): #o(n)
             hash_map[num] = max(hash_map[num], y[index])
 
 
-        if len(hash_map.keys()) < 3:
+        if len(hash_map) < 3: #o(1)
             return -1
 
-        heap = [-i for i in hash_map.values()]
-        print(heap)
-        heapq.heapify(heap)
+        heap = [-i for i in hash_map.values()] #o(n)
+        heapq.heapify(heap) #o(n)
 
-        first_value = -heapq.heappop(heap)
+        first_value = -heapq.heappop(heap) #3logn
         second_value = -heapq.heappop(heap) 
         third_value = -heapq.heappop(heap)
 
