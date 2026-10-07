@@ -15,17 +15,17 @@ class Solution:
         '''
         def moveRight(start_row, start_col):
             for col in range(start_col+1, COLS):
-                if grid[row][col] in ('g', 'w'):
+                if grid[start_row][col] in ('g', 'w'):
                     return
 
-                grid[row][col] = 'guarded'
+                grid[start_row][col] = 'guarded'
 
         def moveLeft(start_row, start_col):
             for col in range(start_col-1, -1, -1):
-                if grid[row][col] in ('g', 'w'):
+                if grid[start_row][col] in ('g', 'w'):
                     return
 
-                grid[row][col] = 'guarded'
+                grid[start_row][col] = 'guarded'
 
         def moveUp(start_row, start_col):
             for row in range(start_row-1, -1, -1):
