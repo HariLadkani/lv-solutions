@@ -65,6 +65,6 @@ class Solution:
                 if freq_for_dominant_element_other_half > ((len(nums)-(i+1)) // 2):
                     return i
 
-            print("############")
+ \
 
         return -1
