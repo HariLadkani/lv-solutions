@@ -18,19 +18,16 @@ class Solution:
         def backtrack(index, curr_sum):
             nonlocal res
 
-            print(f"ENTER: index={index}, curr_sum={curr_sum}")
 
             if index == len(nums):
-                print(f"  BASE CASE: adding {curr_sum} to res")
+            
                 res += curr_sum
                 return
 
             for i in range(index, len(nums)):
-                print(f"  CHOOSE: nums[{i}] = {nums[i]}")
-
                 backtrack(i + 1, curr_sum ^ nums[i])
 
-                print(f"  BACKTRACK: returned to index={index}, curr_sum={curr_sum}")
+           
 
 
             res += curr_sum
